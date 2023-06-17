@@ -1,0 +1,2 @@
+drf-reverse-proxy==1.0.1
+django-cors-headers
