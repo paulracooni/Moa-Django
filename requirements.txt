@@ -1,2 +1,4 @@
-drf-reverse-proxy==1.0.1
-django-cors-headers
+Django==4.2.2
+djangorestframework==3.14.0
+django-cors-headers==4.1.0
+requests==2.31.0
