@@ -10,22 +10,8 @@ from rest_framework import authentication, permissions, renderers
 
 from proxy_auth import serializers, authentications
 
-class NaverAccess(APIView):
-
-    authentication_classes = [authentication.TokenAuthentication]
-    serializer = serializers.NaverAccessSerializer
-
-    def get(self, request, format=None):
-
-        serializer = self.serializer(data=request.query_params)
-
-        serializer.is_valid(raise_exception=True)
-
-        url="https://nid.naver.com/oauth2.0/authorize"
-        query_params = parse.urlencode(serializer.data)
-
-        return redirect(f"{url}?{query_params}")
-
+import logging
+logging.basicConfig(filename='myapp.log', level=logging.INFO)
 
 class NaverToken(APIView):
     permission_classes = ()
@@ -33,7 +19,6 @@ class NaverToken(APIView):
     serializer = serializers.NaverTokenSerialzer
 
     def get(self, request, format=None):
-        
         # Serialize data
         serializer = self.serializer(data=request.query_params)
         serializer.is_valid(raise_exception=True)
@@ -47,6 +32,8 @@ class NaverToken(APIView):
             'content-type'               : 'application/json'
           }
         ).json()
+
+        logging.info(token)
 
         # Request user information
         info = requests.get(
