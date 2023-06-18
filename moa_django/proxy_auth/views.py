@@ -23,7 +23,7 @@ class NaverAccess(APIView):
 
         url="https://nid.naver.com/oauth2.0/authorize"
         query_params = parse.urlencode(serializer.data)
-        print(f"{url}?{query_params}")
+
         return redirect(f"{url}?{query_params}")
 
 

@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  moa-django:
+    build: .
+    ports:
+    - 10080:80
+    volumes:
+    - ./:/app
+    environment:
+      DEBUG: false
