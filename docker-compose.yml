@@ -8,4 +8,4 @@ services:
     volumes:
     - ./:/app
     environment:
-      DEBUG: false
+      DEBUG: 0
